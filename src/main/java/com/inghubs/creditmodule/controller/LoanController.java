@@ -7,17 +7,20 @@ import com.inghubs.creditmodule.dto.LoanInstallmentDTO;
 import com.inghubs.creditmodule.enums.MessageEnum;
 import com.inghubs.creditmodule.service.LoanInstallmentService;
 import com.inghubs.creditmodule.service.LoanService;
+import jakarta.validation.constraints.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
+@Validated
 @RestController
 @RequestMapping("/api/v1/loans")
 public class LoanController extends BaseResponseEntity {
@@ -33,16 +36,19 @@ public class LoanController extends BaseResponseEntity {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Map<String, Object>> getCustomerLoans(@RequestParam Long customerId,
-                                                                @RequestParam Map<String, String> params) {
+    public ResponseEntity<Map<String, Object>> getCustomerLoans(
+            @RequestParam @Min(1)  Long customerId,
+            @RequestParam(name = "page", defaultValue = "0") @Min(0) int page,
+            @RequestParam(name = "size", defaultValue = "10") @Min(0) @Max(100)int size) {
         logger.info("GET Received - Getting customer loans with customer id: {}", customerId);
-        List<LoanDTO> loans = loanService.getCustomerLoans(customerId, params);
+        List<LoanDTO> loans = loanService.getCustomerLoans(customerId, page, size);
         return super.prepareResponseMessage(loans, false,
                 MessageEnum.CUSTOMER_LOANS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
     @GetMapping("/{loanId}")
-    public ResponseEntity<Map<String, Object>> getLoanInstallments(@PathVariable Long loanId) {
+    public ResponseEntity<Map<String, Object>> getLoanInstallments(
+            @PathVariable @Min(1) Long loanId) {
         logger.info("GET Received - Getting loan installments with loan id: {}", loanId);
         List<LoanInstallmentDTO> loans = loanInstallmentService.getLoanInstallments(loanId);
         return super.prepareResponseMessage(loans, false,

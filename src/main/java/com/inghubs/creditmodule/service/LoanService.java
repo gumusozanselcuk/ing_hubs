@@ -24,9 +24,9 @@ public class LoanService {
         this.loanRepository = loanRepository;
     }
 
-    public List<LoanDTO> getCustomerLoans(Long customerId, Map<String, String> params){
+    public List<LoanDTO> getCustomerLoans(Long customerId, int page, int size){
         Page<Loan> loans = loanRepository.findLoansByCustomerId(customerId,
-                PageRequest.of(Integer.valueOf(params.get("page")), Integer.valueOf(params.get("size"))));
+                PageRequest.of(page,size));
 
         List<LoanDTO> loansResponse = loans.getContent().stream()
                 .map(loan -> modelMapper.map(loan, LoanDTO.class))
