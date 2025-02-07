@@ -13,17 +13,17 @@ INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_da
 INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (6, 1, 5.5, 0.0, '2025-08-01', null, false);
 
 
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (7, 1, 5416.67, 0.0, '2024-06-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (8, 1, 5.5, 5416.67, '2024-07-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (9, 1, 5.5, 5416.67, '2024-08-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (10, 1, 5.5, 5416.67, '2024-09-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (11, 1, 5.5, 5416.67, '2024-10-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (12, 1, 5.5, 5416.67, '2024-11-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (13, 1, 5.5, 5416.67, '2024-12-01', null, true);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (14, 1, 5.5, 5416.67, '2025-01-01', null, false);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (15, 1, 5.5, 5416.67, '2025-02-01', null, false);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (16, 1, 5.5, 5416.67, '2025-03-01', null, false);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (17, 1, 5.5, 5416.67, '2025-04-01', null, false);
-INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (18, 1, 5.5, 5416.67, '2025-05-01', null, false);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (7, 2, 5416.67, 0.0, '2024-06-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (8, 2, 5.5, 5416.67, '2024-07-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (9, 2, 5.5, 5416.67, '2024-08-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (10, 2, 5.5, 5416.67, '2024-09-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (11, 2, 5.5, 5416.67, '2024-10-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (12, 2, 5.5, 5416.67, '2024-11-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (13, 2, 5.5, 5416.67, '2024-12-01', null, true);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (14, 2, 5.5, 5416.67, '2025-01-01', null, false);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (15, 2, 5.5, 5416.67, '2025-02-01', null, false);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (16, 2, 5.5, 5416.67, '2025-03-01', null, false);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (17, 2, 5.5, 5416.67, '2025-04-01', null, false);
+INSERT INTO installments (id, loan_id, amount, paid_amount, due_date, payment_date, is_paid) VALUES (18, 2, 5.5, 5416.67, '2025-05-01', null, false);
 
 
