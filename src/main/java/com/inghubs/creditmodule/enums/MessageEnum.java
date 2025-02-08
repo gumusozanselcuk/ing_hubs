@@ -4,7 +4,8 @@ public enum MessageEnum {
 
 	CUSTOMER_LOANS_RETURNED_SUCCESSFULLY("Loans of customer returned successfully."),
 	LOAN_INSTALLMENTS_RETURNED_SUCCESSFULLY("Installments of loan returned successfully."),
-	LOAN_CREATED_SUCCESSFULLY("Loan created successfully.");
+	LOAN_CREATED_SUCCESSFULLY("Loan created successfully."),
+	PAYMENT_DONE_SUCCESSFULLY("Payment done successfully.");
 
 
 	private String value;

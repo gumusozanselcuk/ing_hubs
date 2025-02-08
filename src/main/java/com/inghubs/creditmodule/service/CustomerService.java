@@ -22,4 +22,9 @@ public class CustomerService {
         return customer;
     }
 
+    public void updateCustomerUsedCreditLimitByCustomerId(Long customerId, Double paidLoanAmount){
+        customerRepository.updateCustomerName(customerId, paidLoanAmount);
+    }
+
+
 }

@@ -7,6 +7,8 @@ import com.inghubs.creditmodule.enums.InstallmentNumberEnum;
 import com.inghubs.creditmodule.enums.InterestRateEnum;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,6 +37,8 @@ public class NineMonthsLoanStrategyService implements LoanStrategy {
     public List<LoanInstallment> getLoanInstallmentsOfLoanByStrategy(Loan loan) {
         List<LoanInstallment> loanInstallments = new ArrayList<>();
         Double installmentAmount = (loan.getLoanAmount()*(1+INTEREST_RATE)) / loan.getNumberOfInstallment();
+        BigDecimal result = new BigDecimal(installmentAmount).setScale(2, RoundingMode.HALF_UP);
+        installmentAmount = result.doubleValue();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(loan.getCreateDate());

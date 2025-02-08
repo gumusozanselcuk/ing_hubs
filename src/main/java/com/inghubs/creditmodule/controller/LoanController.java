@@ -1,10 +1,7 @@
 package com.inghubs.creditmodule.controller;
 
 
-import com.inghubs.creditmodule.dto.BaseResponseEntity;
-import com.inghubs.creditmodule.dto.LoanCreationRequestDTO;
-import com.inghubs.creditmodule.dto.LoanDTO;
-import com.inghubs.creditmodule.dto.LoanInstallmentDTO;
+import com.inghubs.creditmodule.dto.*;
 import com.inghubs.creditmodule.enums.MessageEnum;
 import com.inghubs.creditmodule.service.LoanInstallmentService;
 import com.inghubs.creditmodule.service.LoanService;
@@ -67,7 +64,18 @@ public class LoanController extends BaseResponseEntity {
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> createLoan(@RequestBody @Valid LoanCreationRequestDTO loanCreationRequestDTO) {
         logger.info("POST Received - Creating loan for customer id: {}", loanCreationRequestDTO.getCustomerId());
-        LoanDTO loanDTO = loanService.createLoan(loanCreationRequestDTO);return super.prepareResponseMessage(loanDTO, false,
+        LoanDTO loanDTO = loanService.createLoan(loanCreationRequestDTO);
+        logger.info("POST Operation Done - Loan creation is done for customer id: {}", loanCreationRequestDTO.getCustomerId());
+        return super.prepareResponseMessage(loanDTO, false,
                 MessageEnum.LOAN_CREATED_SUCCESSFULLY.getValue(), HttpStatus.OK);
+    }
+
+    @PostMapping("/payment")
+    public ResponseEntity<Map<String, Object>> payLoan(@RequestBody @Valid LoanPaymentRequestDTO loanPaymentRequestDTO) {
+        logger.info("POST Received - Paying loan for loan id: {}", loanPaymentRequestDTO.getLoanId());
+        LoanPaymentResponseDTO loanPaymentResponseDTO = loanService.payLoan(loanPaymentRequestDTO);
+        logger.info("POST Operation Done - Payment has been completed for loan id: {}", loanPaymentRequestDTO.getLoanId());
+        return super.prepareResponseMessage(loanPaymentResponseDTO, false,
+                MessageEnum.PAYMENT_DONE_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 }

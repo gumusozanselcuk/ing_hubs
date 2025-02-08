@@ -2,9 +2,7 @@ package com.inghubs.creditmodule.exceptionhandler;
 
 import com.inghubs.creditmodule.dto.BaseResponseEntity;
 import com.inghubs.creditmodule.enums.ErrorMessageEnum;
-import com.inghubs.creditmodule.exception.CreditLimitIsNotEnoughException;
-import com.inghubs.creditmodule.exception.CustomerNotFoundException;
-import com.inghubs.creditmodule.exception.UsableCreditAmountIsNotEnoughException;
+import com.inghubs.creditmodule.exception.*;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,22 +34,43 @@ public class GlobalExceptionHandler extends BaseResponseEntity {
 
 	@ExceptionHandler(CustomerNotFoundException.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
-	public ResponseEntity<Map<String, Object>> handleExistBookException(CustomerNotFoundException ex) {
+	public ResponseEntity<Map<String, Object>> handleCustomerNotFoundException(CustomerNotFoundException ex) {
 		return super.prepareResponseMessage(null, true, ErrorMessageEnum.CUSTOMER_NOT_FOUND.getValue(),
 				HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(CreditLimitIsNotEnoughException.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
-	public ResponseEntity<Map<String, Object>> handleExistBookException(CreditLimitIsNotEnoughException ex) {
+	public ResponseEntity<Map<String, Object>> handleCreditLimitIsNotEnoughException(CreditLimitIsNotEnoughException ex) {
 		return super.prepareResponseMessage(null, true, ErrorMessageEnum.CREDIT_LIMIT_IS_NOT_ENOUGH.getValue(),
 				HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(UsableCreditAmountIsNotEnoughException.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
-	public ResponseEntity<Map<String, Object>> handleExistBookException(UsableCreditAmountIsNotEnoughException ex) {
+	public ResponseEntity<Map<String, Object>> handleUsableCreditAmountIsNotEnoughException(UsableCreditAmountIsNotEnoughException ex) {
 		return super.prepareResponseMessage(null, true, ErrorMessageEnum.USABLE_CREDIT_AMOUNT_IS_NOT_ENOUGH.getValue(),
+				HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(LoanNotFoundException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public ResponseEntity<Map<String, Object>> handleLoanNotFoundException(LoanNotFoundException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.LOAN_NOT_FOUND.getValue(),
+				HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(LoanHasBeenPaidException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public ResponseEntity<Map<String, Object>> handleLoanHasBeenPaidException(LoanHasBeenPaidException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.LOAN_HAS_ALREADY_BEEN_PAID.getValue(),
+				HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(AmountNotEnoughForInstallmentException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public ResponseEntity<Map<String, Object>> handleAmountNotEnoughForInstallmentException(AmountNotEnoughForInstallmentException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.AMOUNT_NOT_ENOUGH_FOR_INSTALLMENT.getValue(),
 				HttpStatus.CONFLICT);
 	}
 
