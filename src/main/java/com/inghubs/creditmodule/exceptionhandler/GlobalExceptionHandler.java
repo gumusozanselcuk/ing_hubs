@@ -8,6 +8,7 @@ import com.inghubs.creditmodule.exception.UsableCreditAmountIsNotEnoughException
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,6 +23,14 @@ public class GlobalExceptionHandler extends BaseResponseEntity {
 	public ResponseEntity<Map<String, Object>> handleConstraintViolationException(
 			ConstraintViolationException ex) {
 		return super.prepareResponseMessage(null, true, ex.getMessage(),
+				HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<Map<String, Object>> handleMethodArgumentNotValidException(
+			MethodArgumentNotValidException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.INCORRECT_PARAMETERS.getValue(),
 				HttpStatus.BAD_REQUEST);
 	}
 
