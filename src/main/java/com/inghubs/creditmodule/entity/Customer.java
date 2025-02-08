@@ -10,8 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Builder
 @Table(name = "customers")
 public class Customer implements Serializable {
 

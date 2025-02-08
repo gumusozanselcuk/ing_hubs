@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.*;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class LoanDTO {

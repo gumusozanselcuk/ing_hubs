@@ -10,8 +10,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Builder
 @Table(name = "installments")
 public class LoanInstallment implements Serializable {
 
@@ -23,6 +22,10 @@ public class LoanInstallment implements Serializable {
 
     @Column(name = "loan_id")
     private Long loanId;
+
+    @ManyToOne
+    @JoinColumn(name = "loan_id", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    private Loan loan;
 
     @Column(name = "amount")
     private Double amount;
@@ -38,10 +41,6 @@ public class LoanInstallment implements Serializable {
 
     @Column(name = "is_paid")
     private Boolean isPaid;
-
-    @ManyToOne
-    @JoinColumn(name = "loan_id", nullable = false)
-    private Loan loan;
 
     public LoanInstallment(Long loanId, Double amount, Double paidAmount, Date dueDate, Date paymentDate, Boolean isPaid, Loan loan) {
         this.loanId = loanId;

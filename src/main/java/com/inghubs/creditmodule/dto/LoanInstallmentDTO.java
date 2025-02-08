@@ -1,13 +1,11 @@
 package com.inghubs.creditmodule.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class LoanInstallmentDTO {
 

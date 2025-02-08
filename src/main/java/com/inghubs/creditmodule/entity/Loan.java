@@ -12,8 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Getter
-@Setter
 @Table(name = "loans")
 public class Loan implements Serializable {
 
