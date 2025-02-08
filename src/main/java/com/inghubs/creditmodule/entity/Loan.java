@@ -28,7 +28,7 @@ public class Loan implements Serializable {
     private static final long serialVersionUID = 7201333590171773470L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "customer_id")

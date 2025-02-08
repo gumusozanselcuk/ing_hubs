@@ -13,5 +13,5 @@ public interface LoanStrategy {
 
     List<LoanInstallment> getLoanInstallmentsOfLoanByStrategy(Loan loan);
 
-    Integer getType();
+    String getType();
 }

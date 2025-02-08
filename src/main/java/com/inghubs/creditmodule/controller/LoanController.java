@@ -67,8 +67,7 @@ public class LoanController extends BaseResponseEntity {
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> createLoan(@RequestBody @Valid LoanCreationRequestDTO loanCreationRequestDTO) {
         logger.info("POST Received - Creating loan for customer id: {}", loanCreationRequestDTO.getCustomerId());
-        LoanDTO loanDTO = loanService.createLoan(loanCreationRequestDTO);
-        return super.prepareResponseMessage(loanDTO, false,
+        LoanDTO loanDTO = loanService.createLoan(loanCreationRequestDTO);return super.prepareResponseMessage(loanDTO, false,
                 MessageEnum.LOAN_CREATED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 }

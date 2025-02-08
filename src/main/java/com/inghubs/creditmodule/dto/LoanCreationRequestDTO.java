@@ -13,8 +13,6 @@ public class LoanCreationRequestDTO {
 
     private Integer numberOfRequestedInstallments;
 
-    private Double requestedInterestRate;
-
     private Double requestedLoanAmount;
 
 }

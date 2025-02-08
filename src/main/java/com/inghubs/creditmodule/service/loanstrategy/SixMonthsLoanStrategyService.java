@@ -5,12 +5,14 @@ import com.inghubs.creditmodule.entity.Loan;
 import com.inghubs.creditmodule.entity.LoanInstallment;
 import com.inghubs.creditmodule.enums.InstallmentNumberEnum;
 import com.inghubs.creditmodule.enums.InterestRateEnum;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class SixMonthsLoanStrategyService implements LoanStrategy {
 
     private static final Integer INSTALLMENT_NUMBER = InstallmentNumberEnum.SIX.getValue();
@@ -51,7 +53,7 @@ public class SixMonthsLoanStrategyService implements LoanStrategy {
     }
 
     @Override
-    public Integer getType() {
-        return INSTALLMENT_NUMBER;
+    public String getType() {
+        return INSTALLMENT_NUMBER.toString();
     }
 }

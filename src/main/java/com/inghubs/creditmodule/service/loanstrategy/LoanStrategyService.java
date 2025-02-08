@@ -12,19 +12,19 @@ import java.util.stream.Collectors;
 @Service
 public class LoanStrategyService {
 
-    Map<Integer, LoanStrategy> loanStrategyMap;
+    Map<String, LoanStrategy> loanStrategyMap;
 
-    public LoanStrategyService(Map<Integer, LoanStrategy> loanStrategies) {
+    public LoanStrategyService(Map<String, LoanStrategy> loanStrategies) {
         this.loanStrategyMap = loanStrategies.values().stream()
                 .collect(Collectors.toMap(LoanStrategy::getType, loanStrategy -> loanStrategy));
     }
 
 
     public Loan getLoanToBeCreatedByStrategy(LoanCreationRequestDTO loanCreationRequestDTO){
-        return loanStrategyMap.get(loanCreationRequestDTO.getNumberOfRequestedInstallments()).getLoanToBeCreatedByStrategy(loanCreationRequestDTO);
+        return loanStrategyMap.get(loanCreationRequestDTO.getNumberOfRequestedInstallments().toString()).getLoanToBeCreatedByStrategy(loanCreationRequestDTO);
     }
 
     public List<LoanInstallment> getLoanInstallmentsOfLoanByStrategy(Loan loan){
-        return loanStrategyMap.get(loan.getNumberOfInstallment()).getLoanInstallmentsOfLoanByStrategy(loan);
+        return loanStrategyMap.get(loan.getNumberOfInstallment().toString()).getLoanInstallmentsOfLoanByStrategy(loan);
     }
 }
