@@ -38,4 +38,18 @@ public class LoanInstallment implements Serializable {
 
     @Column(name = "is_paid")
     private Boolean isPaid;
+
+    @ManyToOne
+    @JoinColumn(name = "loan_id", nullable = false)
+    private Loan loan;
+
+    public LoanInstallment(Long loanId, Double amount, Double paidAmount, Date dueDate, Date paymentDate, Boolean isPaid, Loan loan) {
+        this.loanId = loanId;
+        this.amount = amount;
+        this.paidAmount = paidAmount;
+        this.dueDate = dueDate;
+        this.paymentDate = paymentDate;
+        this.isPaid = isPaid;
+        this.loan = loan;
+    }
 }

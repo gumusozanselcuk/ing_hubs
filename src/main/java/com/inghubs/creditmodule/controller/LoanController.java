@@ -2,11 +2,13 @@ package com.inghubs.creditmodule.controller;
 
 
 import com.inghubs.creditmodule.dto.BaseResponseEntity;
+import com.inghubs.creditmodule.dto.LoanCreationRequestDTO;
 import com.inghubs.creditmodule.dto.LoanDTO;
 import com.inghubs.creditmodule.dto.LoanInstallmentDTO;
 import com.inghubs.creditmodule.enums.MessageEnum;
 import com.inghubs.creditmodule.service.LoanInstallmentService;
 import com.inghubs.creditmodule.service.LoanService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -53,5 +55,13 @@ public class LoanController extends BaseResponseEntity {
         List<LoanInstallmentDTO> loans = loanInstallmentService.getLoanInstallments(loanId);
         return super.prepareResponseMessage(loans, false,
                 MessageEnum.LOAN_INSTALLMENTS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Map<String, Object>> createLoan(@RequestBody @Valid LoanCreationRequestDTO loanCreationRequestDTO) {
+        logger.info("POST Received - Creating loan for customer id: {}", loanCreationRequestDTO.getCustomerId());
+        LoanDTO loanDTO = loanService.createLoan(loanCreationRequestDTO);
+        return super.prepareResponseMessage(loanDTO, false,
+                MessageEnum.LOAN_CREATED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 }

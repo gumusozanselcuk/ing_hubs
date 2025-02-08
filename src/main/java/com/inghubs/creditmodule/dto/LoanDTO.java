@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class LoanDTO {
 

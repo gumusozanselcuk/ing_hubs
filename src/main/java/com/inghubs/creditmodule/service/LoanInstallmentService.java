@@ -31,4 +31,8 @@ public class LoanInstallmentService {
         return loanInstallmentsResponse;
     }
 
+    public void saveLoanInstallments(List<LoanInstallment> loanInstallments){
+        loanInstallmentRepository.saveAll(loanInstallments);
+    }
+
 }

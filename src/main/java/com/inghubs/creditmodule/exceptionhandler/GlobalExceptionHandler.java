@@ -1,6 +1,10 @@
 package com.inghubs.creditmodule.exceptionhandler;
 
 import com.inghubs.creditmodule.dto.BaseResponseEntity;
+import com.inghubs.creditmodule.enums.ErrorMessageEnum;
+import com.inghubs.creditmodule.exception.CreditLimitIsNotEnoughException;
+import com.inghubs.creditmodule.exception.CustomerNotFoundException;
+import com.inghubs.creditmodule.exception.UsableCreditAmountIsNotEnoughException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,4 +24,26 @@ public class GlobalExceptionHandler extends BaseResponseEntity {
 		return super.prepareResponseMessage(null, true, ex.getMessage(),
 				HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(CustomerNotFoundException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public ResponseEntity<Map<String, Object>> handleExistBookException(CustomerNotFoundException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.CUSTOMER_NOT_FOUND.getValue(),
+				HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(CreditLimitIsNotEnoughException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public ResponseEntity<Map<String, Object>> handleExistBookException(CreditLimitIsNotEnoughException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.CREDIT_LIMIT_IS_NOT_ENOUGH.getValue(),
+				HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(UsableCreditAmountIsNotEnoughException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public ResponseEntity<Map<String, Object>> handleExistBookException(UsableCreditAmountIsNotEnoughException ex) {
+		return super.prepareResponseMessage(null, true, ErrorMessageEnum.USABLE_CREDIT_AMOUNT_IS_NOT_ENOUGH.getValue(),
+				HttpStatus.CONFLICT);
+	}
+
 }
