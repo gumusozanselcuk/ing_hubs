@@ -1,7 +1,9 @@
 package com.inghubs.creditmodule.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.Date;
 
 @Data
