@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "e5aed588-8855-4524-9667-44e3282c3364",
+		"name": "CreditModuleRequests-CUSTOMER_ROLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"furkan\",\n\t\"password\": \"furkan\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCustomerLoans",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/?customerId=2&page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						""
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCustomerLoansForAnotherCustomer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/?customerId=1&page=0&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						""
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCustomerLoansWithInvalidParams",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/?customerId=2&page=0&size=102",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						""
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "2"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "102"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLoanInstallments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/2?customerId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						"2"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLoanInstallmentsForAnotherUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/1?customerId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						"1"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLoanInstallmentsWithInvalidLoanId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/-1?customerId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						"-1"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createLoan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\":2,\n\t\"numberOfRequestedInstallments\":6,\n\t\"requestedLoanAmount\":600000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payLoan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\": 2,\n\t\"loanId\":4,\n\t\"amountToBePaid\":330000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payLoanForAnotherUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\": 1,\n\t\"loanId\":2,\n\t\"amountToBePaid\":33000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createLoanWithTheAmountAboutTheUserLimit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\":2,\n\t\"numberOfRequestedInstallments\":6,\n\t\"requestedLoanAmount\":60000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createLoanWithNonValidRequestParams",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0NVU1RPTUVSIn1dLCJjdXN0b21lcklkIjoyLCJzdWIiOiJmdXJrYW4iLCJpYXQiOjE3MzkxMzI4NDcsImV4cCI6MTczOTE0MDA0N30.6Az1ZyTPkqbJlYIRshforNx83v7Bn8rQbsODxL3nnNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customerId\":2,\n\t\"numberOfRequestedInstallments\":6\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/loans/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
