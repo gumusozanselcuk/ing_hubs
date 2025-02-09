@@ -75,6 +75,11 @@ Users are stored in-memory using Spring Security and have the following credenti
 - Installment amounts and interest rate for loan are determined according to these strategies.
 - The strategy is determined according to the parameter of the numberOfRequestedInstallments received from the user.
 
+## Reward And Penalty Calculation
+- The final calculated amount is obtained by multiplying the initial amount by the penalty or reward factor raised to the power of the number of days.
+- REWARD_COEFFICIENT = 0.999<br>PENALTY_COEFFICIENT = 1.001
+- Final Amount = Initial Amount * ((COEFFICIENT)^DAYS)
+
 ## Testing with Postman
 A **Postman Collection** is provided to easily test all API endpoints. Follow these steps:
 1. Import the provided Postman Collections under resources.
