@@ -21,8 +21,8 @@ public class LoanInstallmentService {
         this.modelMapper = modelMapper;
     }
 
-    public List<LoanInstallmentDTO> getLoanInstallments(Long loanId){
-        List<LoanInstallment> loanInstallments = loanInstallmentRepository.findLoanInstallmentsByLoanId(loanId);
+    public List<LoanInstallmentDTO> getLoanInstallments(Long customerId,Long loanId){
+        List<LoanInstallment> loanInstallments = loanInstallmentRepository.findLoanInstallmentsByCustomerIdAndLoanId(customerId,loanId);
 
         List<LoanInstallmentDTO> loanInstallmentsResponse = loanInstallments.stream()
                 .map(loan -> modelMapper.map(loan, LoanInstallmentDTO.class))

@@ -60,7 +60,7 @@ public class LoanController extends BaseResponseEntity {
             @RequestParam @Min(1)  Long customerId,
             @PathVariable @Min(1) Long loanId) {
         logger.info("GET Received - Getting loan installments with loan id: {}", loanId);
-        List<LoanInstallmentDTO> loans = loanInstallmentService.getLoanInstallments(loanId);
+        List<LoanInstallmentDTO> loans = loanInstallmentService.getLoanInstallments(customerId,loanId);
         return super.prepareResponseMessage(loans, false,
                 MessageEnum.LOAN_INSTALLMENTS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
