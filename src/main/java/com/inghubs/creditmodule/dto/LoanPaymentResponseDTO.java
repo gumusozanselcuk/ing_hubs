@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Dto for loan payment response
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,10 +16,29 @@ import lombok.NoArgsConstructor;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class LoanPaymentResponseDTO {
 
+    /**
+     * Id of the loan payment
+     */
     private Long loanId;
+
+    /**
+     * Amount of the loan payment
+     */
     private Double paidAmount;
+
+    /**
+     * Remaining amount of the loan payment
+     */
     private Double remainingAmount;
+
+    /**
+     * Paid installment count of the loan payment
+     */
     private Integer paidInstallmentCount;
+
+    /**
+     * All loan paid info of the loan payment
+     */
     private Boolean isAllLoanPaid;
 
 }

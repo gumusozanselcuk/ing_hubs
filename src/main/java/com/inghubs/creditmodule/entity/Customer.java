@@ -17,6 +17,9 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Customer entity represents a customer in the credit module.
+ */
 @Entity
 @Data
 @AllArgsConstructor
@@ -27,22 +30,40 @@ public class Customer implements Serializable {
 
     private static final long serialVersionUID = 8689821010635973458L;
 
+    /**
+     * Unique identifier for the customer.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Name of the customer.
+     */
     @Column(name = "name")
     private String name;
 
+    /**
+     * Surname of the customer.
+     */
     @Column(name = "surname")
     private String surname;
 
+    /**
+     * Credit limit of the customer.
+     */
     @Column(name = "credit_limit")
     private Double creditLimit;
 
+    /**
+     * Used credit limit of the customer.
+     */
     @Column(name = "used_credit_limit")
     private Double usedCreditLimit;
 
+    /**
+     * Loans of the customer.
+     */
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "customer_id")
     private List<Loan> loans;

@@ -14,13 +14,28 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Service class for handling six months loan strategy operations.
+ */
 @Service
 public class SixMonthsLoanStrategyService implements LoanStrategy {
 
+    /**
+     * Installment number
+     */
     private static final Integer INSTALLMENT_NUMBER = InstallmentNumberEnum.SIX.getValue();
 
+    /**
+     * Interest rate
+     */
     private static final Double INTEREST_RATE = InterestRateEnum.ZERO_POINT_ONE.getValue();
 
+    /**
+     * Return loan by six months strategy
+     *
+     * @param loanCreationRequestDTO dto that contains info for creation loan
+     * @return loan
+     */
     @Override
     public Loan getLoanToBeCreatedByStrategy(LoanCreationRequestDTO loanCreationRequestDTO) {
         Loan loan = Loan.builder()
@@ -33,6 +48,12 @@ public class SixMonthsLoanStrategyService implements LoanStrategy {
         return loan;
     }
 
+    /**
+     * Return loan installments by six months strategy
+     *
+     * @param loan loan
+     * @return list of loans
+     */
     @Override
     public List<LoanInstallment> getLoanInstallmentsOfLoanByStrategy(Loan loan) {
         List<LoanInstallment> loanInstallments = new ArrayList<>();
@@ -56,6 +77,11 @@ public class SixMonthsLoanStrategyService implements LoanStrategy {
         return loanInstallments;
     }
 
+    /**
+     * Return type
+     *
+     * @return type
+     */
     @Override
     public String getType() {
         return INSTALLMENT_NUMBER.toString();

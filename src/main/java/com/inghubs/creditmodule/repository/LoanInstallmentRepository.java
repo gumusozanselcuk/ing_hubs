@@ -8,9 +8,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for LoanInstallment entity.
+ */
 @Repository
 public interface LoanInstallmentRepository extends JpaRepository<LoanInstallment, Long> {
 
+    /**
+     * Retrieves loan installments by customer id and loan id
+     *
+     * @param customerId id of the customer
+     * @param loanId id of the loan
+     */
     @Query(value = """
                    SELECT i.*
                    FROM customers c, loans l, installments i 

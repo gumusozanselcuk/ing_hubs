@@ -21,20 +21,52 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for handling loan operations.
+ */
 @Service
 public class LoanService {
 
+    /**
+     * LoanRepository repository for db operations
+     */
     private final LoanRepository loanRepository;
 
+    /**
+     * Model mapper for sto transformations
+     */
     private final ModelMapper modelMapper;
 
+    /**
+     * Customer service for customer operations
+     */
     private final CustomerService customerService;
 
+    /**
+     * Loan strategy service for loan strategy operations
+     */
     private final LoanStrategyService loanStrategyService;
 
+    /**
+     * Loan installment service for installment operations
+     */
     private final LoanInstallmentService loanInstallmentService;
+
+    /**
+     * Payment service for payment operations
+     */
     private final PaymentService paymentService;
 
+    /**
+     * Constructor for LoanService
+     *
+     * @param loanRepository loan repository
+     * @param modelMapper model mapper
+     * @param customerService customer service
+     * @param loanStrategyService loan strategy service
+     * @param loanInstallmentService loan installment service
+     * @param paymentService payment service
+     */
     public LoanService(LoanRepository loanRepository, ModelMapper modelMapper, CustomerService customerService,
                        LoanStrategyService loanStrategyService, LoanInstallmentService loanInstallmentService,
                        PaymentService paymentService) {
@@ -46,6 +78,14 @@ public class LoanService {
         this.paymentService = paymentService;
     }
 
+    /**
+     * Retrieves loans of the customer
+     *
+     * @param customerId id of the customer
+     * @param page page
+     * @param size page size
+     * @return list of loans
+     */
     public List<LoanDTO> getCustomerLoans(Long customerId, int page, int size){
         Page<Loan> loans = loanRepository.findLoansByCustomerId(customerId,
                 PageRequest.of(page,size));
@@ -57,6 +97,12 @@ public class LoanService {
         return loansResponse;
     }
 
+    /**
+     * Creates loan
+     *
+     * @param loanCreationRequestDTO dto that contains info for creation loan
+     * @return loan dto
+     */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
     public LoanDTO createLoan(LoanCreationRequestDTO loanCreationRequestDTO){
         checkUserLimit(loanCreationRequestDTO.getCustomerId(), loanCreationRequestDTO.getRequestedLoanAmount());
@@ -66,6 +112,12 @@ public class LoanService {
         return loanDTO;
     }
 
+    /**
+     * Pays loan
+     *
+     * @param loanPaymentRequestDTO dto that contains info for paying loan
+     * @return loan payment response dto
+     */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
     public LoanPaymentResponseDTO payLoan(LoanPaymentRequestDTO loanPaymentRequestDTO){
         Loan loan = loanRepository.findByIdAndCustomerId(loanPaymentRequestDTO.getLoanId(), loanPaymentRequestDTO.getCustomerId())
@@ -79,6 +131,12 @@ public class LoanService {
         return loanPaymentResponseDTO;
     }
 
+    /**
+     * Controls that user has enough limits for getting loan
+     *
+     * @param customerId id of the customer
+     * @param requestedLoanAmount load amount that requested
+     */
     private void checkUserLimit(Long customerId, Double requestedLoanAmount){
         Customer customer = customerService.getCustomerById(customerId);
         Double usableCreditLimit = customer.getCreditLimit()-customer.getUsedCreditLimit();
@@ -91,11 +149,22 @@ public class LoanService {
         }
     }
 
+    /**
+     * Saves loan
+     *
+     * @param loanCreationRequestDTO dto that contains info for creation loan
+     */
     private Loan saveLoan(LoanCreationRequestDTO loanCreationRequestDTO){
         Loan loan = loanStrategyService.getLoanToBeCreatedByStrategy(loanCreationRequestDTO);
         loanRepository.save(loan);
         return loan;
     }
+
+    /**
+     * Saves installments of the loan
+     *
+     * @param loan loan
+     */
     private void saveLoanInstallments(Loan loan){
         List<LoanInstallment> loanInstallments =
                 loanStrategyService.getLoanInstallmentsOfLoanByStrategy(loan);

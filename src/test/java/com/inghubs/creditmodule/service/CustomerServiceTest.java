@@ -55,6 +55,6 @@ public class CustomerServiceTest {
         Double paidLoanAmount = 100.0;
 
         customerService.updateCustomerUsedCreditLimitByCustomerId(customerId, paidLoanAmount);
-        verify(customerRepository).updateCustomerName(customerId, paidLoanAmount);
+        verify(customerRepository).updateCustomerUsedCreditLimitByCustomerId(customerId, paidLoanAmount);
     }
 }

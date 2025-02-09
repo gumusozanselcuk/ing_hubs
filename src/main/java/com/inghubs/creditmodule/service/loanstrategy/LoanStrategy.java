@@ -7,6 +7,9 @@ import com.inghubs.creditmodule.entity.LoanInstallment;
 
 import java.util.List;
 
+/**
+ * Service interface for loan strategy operations.
+ */
 public interface LoanStrategy {
 
     Loan getLoanToBeCreatedByStrategy(LoanCreationRequestDTO loanCreationRequestDTO);

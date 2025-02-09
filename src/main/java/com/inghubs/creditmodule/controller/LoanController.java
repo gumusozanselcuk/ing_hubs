@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Loan controller
+ */
 @Slf4j
 @Validated
 @RestController
@@ -34,14 +37,35 @@ public class LoanController extends BaseResponseEntity {
 
     private static Logger logger = LoggerFactory.getLogger(LoanController.class);
 
+    /**
+     * Loan service for loan operations
+     */
     private final LoanService loanService;
+
+    /**
+     * Loan installment service for installment operations
+     */
     private final LoanInstallmentService loanInstallmentService;
 
+    /**
+     * Constructor for LoanController
+     *
+     * @param loanService loan service
+     * @param loanInstallmentService loan installment service
+     */
     public LoanController(LoanService loanService, LoanInstallmentService loanInstallmentService) {
         this.loanService = loanService;
         this.loanInstallmentService = loanInstallmentService;
     }
 
+    /**
+     * Return loans of the given customer.
+     *
+     * @param customerId id of the customer
+     * @param page page number for pagination
+     * @param size size of the page
+     * @return ResponseEntity that contains customer loans
+     */
     @PreAuthorize("hasRole('ADMIN') or (#customerId == principal.customerId)")
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> getCustomerLoans(
@@ -54,6 +78,13 @@ public class LoanController extends BaseResponseEntity {
                 MessageEnum.CUSTOMER_LOANS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
+    /**
+     * Return installments of the given loan.
+     *
+     * @param customerId id of the customer
+     * @param loanId id of the loan
+     * @return ResponseEntity that contains loan installments
+     */
     @PreAuthorize("hasRole('ADMIN') or (#customerId == principal.customerId)")
     @GetMapping("/{loanId}")
     public ResponseEntity<Map<String, Object>> getLoanInstallments(
@@ -65,6 +96,12 @@ public class LoanController extends BaseResponseEntity {
                 MessageEnum.LOAN_INSTALLMENTS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
+    /**
+     * Creates new loan.
+     *
+     * @param loanCreationRequestDTO dto contains params for loan creation
+     * @return ResponseEntity that contains the created loan
+     */
     @PreAuthorize("hasRole('ADMIN') or (#loanCreationRequestDTO.customerId == principal.customerId)")
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> createLoan(@RequestBody @Valid LoanCreationRequestDTO loanCreationRequestDTO) {
@@ -75,6 +112,12 @@ public class LoanController extends BaseResponseEntity {
                 MessageEnum.LOAN_CREATED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
+    /**
+     * Pays for the given loan.
+     *
+     * @param loanPaymentRequestDTO dto contains params for loan payment
+     * @return ResponseEntity that contains the payment info
+     */
     @PreAuthorize("hasRole('ADMIN') or (#loanPaymentRequestDTO.customerId == principal.customerId)")
     @PostMapping("/payment")
     public ResponseEntity<Map<String, Object>> payLoan(@RequestBody @Valid LoanPaymentRequestDTO loanPaymentRequestDTO) {

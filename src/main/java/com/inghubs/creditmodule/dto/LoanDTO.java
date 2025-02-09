@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * Dto for loan
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,15 +18,33 @@ import java.util.Date;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class LoanDTO {
 
+    /**
+     * Id of the loan
+     */
     private Long id;
 
+    /**
+     * Customer id of the loan
+     */
     private Long customerId;
 
+    /**
+     * Amount of the loan
+     */
     private Double loanAmount;
 
+    /**
+     * Installment number of the loan
+     */
     private Integer numberOfInstallment;
 
+    /**
+     * Creation date of the loan
+     */
     private Date createDate;
 
+    /**
+     * Paid info of the loan
+     */
     private Boolean isPaid;
 }
