@@ -92,6 +92,7 @@ A **Postman Collection** is provided to easily test all API endpoints. Follow th
 - Dummy test data is loaded automatically from `import.sql`.
 - You can access the H2 console at `http://localhost:8080/h2-console`.
 - Default JDBC URL: `jdbc:h2:mem:credit_db`
+- Username:admin<br>Password:admin
 
 ## License
 This project is open-source and available under the MIT License.
