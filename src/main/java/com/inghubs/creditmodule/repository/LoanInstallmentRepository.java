@@ -21,6 +21,6 @@ public interface LoanInstallmentRepository extends JpaRepository<LoanInstallment
                    """,
             nativeQuery = true)
     List<LoanInstallment> findLoanInstallmentsByCustomerIdAndLoanId(@Param("customer_id") Long customerId,
-                                                                    @Param("loan_id") Long loanId);
+                                                                              @Param("loan_id") Long loanId);
 
 }

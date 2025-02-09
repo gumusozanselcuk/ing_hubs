@@ -2,6 +2,8 @@ package com.inghubs.creditmodule.service;
 
 import com.inghubs.creditmodule.dto.LoanInstallmentDTO;
 import com.inghubs.creditmodule.entity.LoanInstallment;
+import com.inghubs.creditmodule.enums.ErrorMessageEnum;
+import com.inghubs.creditmodule.exception.LoanNotFoundException;
 import com.inghubs.creditmodule.repository.LoanInstallmentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,11 @@ public class LoanInstallmentService {
     }
 
     public List<LoanInstallmentDTO> getLoanInstallments(Long customerId,Long loanId){
-        List<LoanInstallment> loanInstallments = loanInstallmentRepository.findLoanInstallmentsByCustomerIdAndLoanId(customerId,loanId);
+        List<LoanInstallment> loanInstallments = loanInstallmentRepository.
+                findLoanInstallmentsByCustomerIdAndLoanId(customerId,loanId);
+
+        if(loanInstallments.size()==0)
+            throw new LoanNotFoundException(ErrorMessageEnum.LOAN_NOT_FOUND.getValue());
 
         List<LoanInstallmentDTO> loanInstallmentsResponse = loanInstallments.stream()
                 .map(loan -> modelMapper.map(loan, LoanInstallmentDTO.class))
