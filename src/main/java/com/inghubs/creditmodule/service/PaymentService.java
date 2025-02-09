@@ -5,7 +5,6 @@ import com.inghubs.creditmodule.entity.Loan;
 import com.inghubs.creditmodule.entity.LoanInstallment;
 import com.inghubs.creditmodule.enums.ErrorMessageEnum;
 import com.inghubs.creditmodule.exception.AmountNotEnoughForInstallmentException;
-import com.inghubs.creditmodule.repository.LoanInstallmentRepository;
 import com.inghubs.creditmodule.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
@@ -117,7 +116,4 @@ public class PaymentService {
 
         return ChronoUnit.DAYS.between(localDueDate, today);
     }
-
-
-
 }

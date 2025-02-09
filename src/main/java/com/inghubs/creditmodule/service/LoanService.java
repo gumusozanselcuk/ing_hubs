@@ -96,11 +96,6 @@ public class LoanService {
         loanRepository.save(loan);
         return loan;
     }
-
-    public void updateLoan(Loan loan){
-        loanRepository.save(loan);
-    }
-
     private void saveLoanInstallments(Loan loan){
         List<LoanInstallment> loanInstallments =
                 loanStrategyService.getLoanInstallmentsOfLoanByStrategy(loan);
