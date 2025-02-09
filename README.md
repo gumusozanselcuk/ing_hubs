@@ -70,6 +70,11 @@ Users are stored in-memory using Spring Security and have the following credenti
 | POST   | `/api/v1/loans`          | Create loan. <br> RequestBody->LoanCreationRequestDTO                 | CUSTOMER (only if `customer_id` matches) / ADMIN |
 | POST    | `/api/v1/loans/payment`  | Pay loan. <br> RequestBody->LoanPaymentRequestDTO                     | CUSTOMER (only if `customer_id` matches) / ADMIN |
 
+## Loan Strategies
+- There are 4 loan strategies for creating loan:<br> * TwentyFourMonthsLoanStrategy<br> * TwelveMonthsLoanStrategy<br> * NineMonthsLoanStrategy<br> * SixMonthsLoanStrategy
+- Installment amounts and interest rate for loan are determined according to these strategies.
+- The strategy is determined according to the parameter of the numberOfRequestedInstallments received from the user.
+
 ## Testing with Postman
 A **Postman Collection** is provided to easily test all API endpoints. Follow these steps:
 1. Import the provided Postman Collections under resources.
