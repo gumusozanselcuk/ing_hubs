@@ -1,7 +1,7 @@
-# Credit API
+# Credit Module API
 
 ## Overview
-This is a Spring Boot-based Credit module API that allows users to manage laon-related operations. The application uses H2 as an in-memory database and includes authentication and authorization mechanisms.
+This is a Spring Boot-based Credit Module API that allows users to manage laon-related operations. The application uses H2 as an in-memory database and includes authentication and authorization mechanisms.
 
 ## Features
 - **User Authentication & Authorization**
