@@ -128,7 +128,10 @@ public class PaymentService {
         }
         loanRepository.save(loan);
 
-        loanPaymentResponseDTO.setPaidAmount(amountToBePaid - remainingMoney);
+        double paidAmount = new BigDecimal(amountToBePaid - remainingMoney).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
+        remainingMoney = new BigDecimal(remainingMoney).setScale(2, RoundingMode.HALF_UP).doubleValue();
+
+        loanPaymentResponseDTO.setPaidAmount(paidAmount);
         loanPaymentResponseDTO.setRemainingAmount(remainingMoney);
         loanPaymentResponseDTO.setPaidInstallmentCount(paidInstallmentCount);
         return loanPaymentResponseDTO;
