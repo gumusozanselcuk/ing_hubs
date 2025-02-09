@@ -34,9 +34,4 @@ public class LoanInstallmentService {
     public void saveLoanInstallments(List<LoanInstallment> loanInstallments){
         loanInstallmentRepository.saveAll(loanInstallments);
     }
-
-    public void updateLoanInstallment(LoanInstallment loanInstallment){
-        loanInstallmentRepository.save(loanInstallment);
-    }
-
 }

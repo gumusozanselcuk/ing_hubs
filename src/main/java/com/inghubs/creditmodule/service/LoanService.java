@@ -68,7 +68,7 @@ public class LoanService {
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
     public LoanPaymentResponseDTO payLoan(LoanPaymentRequestDTO loanPaymentRequestDTO){
-        Loan loan = loanRepository.findById(loanPaymentRequestDTO.getLoanId())
+        Loan loan = loanRepository.findByIdAndCustomerId(loanPaymentRequestDTO.getLoanId(), loanPaymentRequestDTO.getCustomerId())
                 .orElseThrow(() -> new LoanNotFoundException(ErrorMessageEnum.LOAN_NOT_FOUND.getValue()));
 
         if(loan.getIsPaid())

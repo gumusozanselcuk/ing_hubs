@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,7 @@ public class LoanController extends BaseResponseEntity {
         this.loanInstallmentService = loanInstallmentService;
     }
 
+    @PreAuthorize("hasRole('ADMIN') or (#customerId == principal.customerId)")
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> getCustomerLoans(
             @RequestParam @Min(1)  Long customerId,
@@ -52,8 +54,10 @@ public class LoanController extends BaseResponseEntity {
                 MessageEnum.CUSTOMER_LOANS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or (#customerId == principal.customerId)")
     @GetMapping("/{loanId}")
     public ResponseEntity<Map<String, Object>> getLoanInstallments(
+            @RequestParam @Min(1)  Long customerId,
             @PathVariable @Min(1) Long loanId) {
         logger.info("GET Received - Getting loan installments with loan id: {}", loanId);
         List<LoanInstallmentDTO> loans = loanInstallmentService.getLoanInstallments(loanId);
@@ -61,6 +65,7 @@ public class LoanController extends BaseResponseEntity {
                 MessageEnum.LOAN_INSTALLMENTS_RETURNED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or (#loanCreationRequestDTO.customerId == principal.customerId)")
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> createLoan(@RequestBody @Valid LoanCreationRequestDTO loanCreationRequestDTO) {
         logger.info("POST Received - Creating loan for customer id: {}", loanCreationRequestDTO.getCustomerId());
@@ -70,6 +75,7 @@ public class LoanController extends BaseResponseEntity {
                 MessageEnum.LOAN_CREATED_SUCCESSFULLY.getValue(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN') or (#loanPaymentRequestDTO.customerId == principal.customerId)")
     @PostMapping("/payment")
     public ResponseEntity<Map<String, Object>> payLoan(@RequestBody @Valid LoanPaymentRequestDTO loanPaymentRequestDTO) {
         logger.info("POST Received - Paying loan for loan id: {}", loanPaymentRequestDTO.getLoanId());
